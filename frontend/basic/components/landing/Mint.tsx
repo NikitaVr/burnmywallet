@@ -98,7 +98,10 @@ const Mint: NextPage = () => {
             <h3 className={styles.text}>
               Connect to your hacked wallet
               <br />
-              &amp; set it on 🔥 fire 🔥
+              &amp; set it on 🔥 <span className={styles.burntText}>
+                fire
+              </span>{" "}
+              🔥
             </h3>
             {hasMinted && publicSaleData ? (
               <VStack>
