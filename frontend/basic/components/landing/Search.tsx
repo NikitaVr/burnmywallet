@@ -39,6 +39,22 @@ const Search: NextPage = () => {
               {hacked === false && (
                 <span style={{ color: "green" }}>is not burned!</span>
               )}{" "}
+              <br />
+              <br />
+              {account?.address && (
+                <>
+                  Check address on etherscan:
+                  <br />
+                  <a
+                    className={styles.link}
+                    target="_blank"
+                    rel="noopener noreferrer nofollow"
+                    href={`https://etherscan.io/address/${account.address}`}
+                  >
+                    etherscan.io/address/{account.address}
+                  </a>
+                </>
+              )}
             </p>
           </VStack>
           <div className={styles.scrollContainer}>

@@ -8,6 +8,7 @@
   align-items: center;
   color: white;
   overflow: hidden;
+  text-align: center;
 }
 
 .text {
@@ -329,10 +330,10 @@
 
 @keyframes scroll {
   0% {
-    top: 51%;
+    top: 100%;
   }
   100% {
-    top: -130%;
+    top: -150%;
   }
 }
 
@@ -346,6 +347,9 @@
   position: relative;
 }
 
+.link {
+  text-decoration: underline;
+}
 .scroll {
   position: absolute;
   width: 100%;
