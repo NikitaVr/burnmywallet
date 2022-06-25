@@ -12,7 +12,6 @@ import { checkIsBurned } from "@utils/isBurned";
 
 const targetChain = parseInt(process.env.NEXT_PUBLIC_TARGET_CHAIN!); //31337; //4
 
-const PRICE = 0.02;
 const Mint: NextPage = () => {
   const { data: account } = useAccount();
   const { activeChain, switchNetwork } = useNetwork();

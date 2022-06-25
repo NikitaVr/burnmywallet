@@ -56,8 +56,8 @@ const Search: NextPage = () => {
                 Search
               </Button>
             </HStack>
-            {hacked === true && <p style={{ color: "red" }}>Hacked!</p>}
-            {hacked === false && <p style={{ color: "green" }}>Not Hacked!</p>}
+            {hacked === true && <p style={{ color: "red" }}>Burned!</p>}
+            {hacked === false && <p style={{ color: "green" }}>Not Burned!</p>}
           </VStack>
         </main>
       </div>
