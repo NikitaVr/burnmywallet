@@ -7,6 +7,13 @@ import { useRouter } from "next/router";
 import { useAccount } from "wagmi";
 import useAllBurnedWallets from "hooks/useAllBurnedWallets";
 
+const textList = [
+  "just burned 🔥",
+  "fried 🍳",
+  "extinguished 🧯",
+  "toasted 🍞",
+];
+
 const Search: NextPage = () => {
   const [hacked, setHacked] = useState<boolean | undefined>(undefined);
   const burnedWallets = useAllBurnedWallets();
@@ -16,6 +23,11 @@ const Search: NextPage = () => {
     const isBurned = await checkIsBurned(val);
 
     setHacked(isBurned);
+  };
+
+  const getRandomText = () => {
+    const num = Math.floor(Math.random() * textList.length);
+    return `was ${textList[num]}`;
   };
 
   const { data: account } = useAccount();
@@ -63,37 +75,37 @@ const Search: NextPage = () => {
           <div className={styles.scrollContainer}>
             <div className={styles.scroll}>
               <div>
-                0xE556B9bfEFDd5B190c67b521ED0A7d19Ab89a311 was just burned 🔥
+                0xE556B9bfEFDd5B190c67b521ED0A7d19Ab89a311 {getRandomText()}
               </div>
               <div>
-                0xc0ffee254729296a45a3885639AC7E10F9d54979 was just burned 🔥
+                0xc0ffee254729296a45a3885639AC7E10F9d54979 {getRandomText()}
               </div>
               <div>
-                0x999999cf1046e68e36E1aA2E0E07105eDDD1f08E was just burned 🔥
+                0x999999cf1046e68e36E1aA2E0E07105eDDD1f08E {getRandomText()}
               </div>
               <div>
-                0xE556B9bfEFDd5B190c67b521ED0A7d19Ab89a311 was just burned 🔥
+                0xE556B9bfEFDd5B190c67b521ED0A7d19Ab89a311 {getRandomText()}
               </div>
               <div>
-                0xc0ffee254729296a45a3885639AC7E10F9d54979 was just burned 🔥
+                0xc0ffee254729296a45a3885639AC7E10F9d54979 {getRandomText()}
               </div>
               <div>
-                0x999999cf1046e68e36E1aA2E0E07105eDDD1f08E was just burned 🔥
+                0x999999cf1046e68e36E1aA2E0E07105eDDD1f08E {getRandomText()}
               </div>
               <div>
-                0xE556B9bfEFDd5B190c67b521ED0A7d19Ab89a311 was just burned 🔥
+                0xE556B9bfEFDd5B190c67b521ED0A7d19Ab89a311 {getRandomText()}
               </div>
               <div>
-                0x999999cf1046e68e36E1aA2E0E07105eDDD1f08E was just burned 🔥
+                0x999999cf1046e68e36E1aA2E0E07105eDDD1f08E {getRandomText()}
               </div>
               <div>
-                0xc0ffee254729296a45a3885639AC7E10F9d54979 was just burned 🔥
+                0xc0ffee254729296a45a3885639AC7E10F9d54979 {getRandomText()}
               </div>
               <div>
-                0xE556B9bfEFDd5B190c67b521ED0A7d19Ab89a311 was just burned 🔥
+                0xE556B9bfEFDd5B190c67b521ED0A7d19Ab89a311 {getRandomText()}
               </div>
               <div>
-                0x999999cf1046e68e36E1aA2E0E07105eDDD1f08E was just burned 🔥
+                0x999999cf1046e68e36E1aA2E0E07105eDDD1f08E {getRandomText()}
               </div>
             </div>
             <div className={styles.scrollFaderTop}></div>
