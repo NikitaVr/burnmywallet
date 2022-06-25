@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import styles from "@styles/Mint.module.css";
-import { Image, Link, VStack } from "@chakra-ui/react";
+import { Image, Link, Tooltip, VStack } from "@chakra-ui/react";
 import { useAccount, useContractWrite, useDisconnect, useNetwork } from "wagmi";
 import myNFT from "@data/BurnMyWallet.json";
 import { useState } from "react";
@@ -144,18 +144,26 @@ const Mint: NextPage = () => {
               </VStack>
             ) : (
               <VStack>
-                <button
-                  className={styles.btn}
-                  onClick={handlePublicMint}
-                  disabled={alreadyBurned}
-                >
-                  Burn {abridgeAddress(account?.address)}
-                  {publicSaleIsLoading && <Spinner marginLeft={2} />}
-                </button>
+                <Tooltip label={account?.address}>
+                  <button
+                    className={styles.btn}
+                    onClick={handlePublicMint}
+                    disabled={alreadyBurned}
+                  >
+                    Burn {abridgeAddress(account?.address)}
+                    {publicSaleIsLoading && <Spinner marginLeft={2} />}
+                  </button>
+                </Tooltip>
                 <div
                   className={burn ? styles.bounceOutDown : styles.walletIcon}
                 >
-                  <Image src="assets/eth-wallet.png" alt="wallet icon" />
+                  <Tooltip
+                    label={`Drop ${abridgeAddress(
+                      account?.address
+                    )} into the flames`}
+                  >
+                    <Image src="assets/eth-wallet.png" alt="wallet icon" />
+                  </Tooltip>
                 </div>
                 {alreadyBurned && (
                   <p style={{ color: "white", marginTop: 30, zIndex: 2 }}>

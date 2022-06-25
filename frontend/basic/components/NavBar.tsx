@@ -1,6 +1,6 @@
+import { Tooltip } from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { FormEventHandler } from "react";
 import styles from "../styles/Navbar.module.css";
 
 const NavBar = () => {
@@ -18,21 +18,25 @@ const NavBar = () => {
       <div className={styles.navbar}>
         <div className={styles.leftPartition}>
           <Link href="/" passHref>
-            <button className={styles.home}>🔥</button>
+            <Tooltip label="Burn your hacked wallet">
+              <button className={styles.home}>🔥</button>
+            </Tooltip>
           </Link>
-          <form onSubmit={handleSubmit} className={styles.searchBar}>
-            <input
-              type="search"
-              name="search"
-              pattern=".*\S.*"
-              required
-              id="search"
-              placeholder="Enter wallet address"
-            />
-            <button className={styles.searchBtn} type="submit">
-              <span>Search</span>
-            </button>
-          </form>
+          <Tooltip label="Search if a wallet is marked as compromised">
+            <form onSubmit={handleSubmit} className={styles.searchBar}>
+              <input
+                type="search"
+                name="search"
+                pattern=".*\S.*"
+                required
+                id="search"
+                placeholder="Enter wallet address"
+              />
+              <button className={styles.searchBtn} type="submit">
+                <span>Search</span>
+              </button>
+            </form>
+          </Tooltip>
         </div>
       </div>
     </div>
