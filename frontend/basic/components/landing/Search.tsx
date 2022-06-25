@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { checkIsBurned } from "@utils/isBurned";
 import { useRouter } from "next/router";
 import { useAccount } from "wagmi";
-import { abridgeAddress } from "@utils/abridgeAddress";
 
 const Search: NextPage = () => {
   const [hacked, setHacked] = useState<boolean | undefined>(undefined);
@@ -32,7 +31,7 @@ const Search: NextPage = () => {
         <main className={styles.main}>
           <h1 className={styles.title}>🔥 Is your wallet burned? 🔥</h1>
           <VStack>
-            <p style={{ color: "white" }}>
+            <p style={{ color: "white", marginBottom: "20px" }}>
               {account?.address}{" "}
               {hacked === true && (
                 <span style={{ color: "red" }}>is burned!</span>
@@ -42,6 +41,45 @@ const Search: NextPage = () => {
               )}{" "}
             </p>
           </VStack>
+          <div className={styles.scrollContainer}>
+            <div className={styles.scroll}>
+              <div>
+                0xE556B9bfEFDd5B190c67b521ED0A7d19Ab89a311 was just burned 🔥
+              </div>
+              <div>
+                0xc0ffee254729296a45a3885639AC7E10F9d54979 was just burned 🔥
+              </div>
+              <div>
+                0x999999cf1046e68e36E1aA2E0E07105eDDD1f08E was just burned 🔥
+              </div>
+              <div>
+                0xE556B9bfEFDd5B190c67b521ED0A7d19Ab89a311 was just burned 🔥
+              </div>
+              <div>
+                0xc0ffee254729296a45a3885639AC7E10F9d54979 was just burned 🔥
+              </div>
+              <div>
+                0x999999cf1046e68e36E1aA2E0E07105eDDD1f08E was just burned 🔥
+              </div>
+              <div>
+                0xE556B9bfEFDd5B190c67b521ED0A7d19Ab89a311 was just burned 🔥
+              </div>
+              <div>
+                0x999999cf1046e68e36E1aA2E0E07105eDDD1f08E was just burned 🔥
+              </div>
+              <div>
+                0xc0ffee254729296a45a3885639AC7E10F9d54979 was just burned 🔥
+              </div>
+              <div>
+                0xE556B9bfEFDd5B190c67b521ED0A7d19Ab89a311 was just burned 🔥
+              </div>
+              <div>
+                0x999999cf1046e68e36E1aA2E0E07105eDDD1f08E was just burned 🔥
+              </div>
+            </div>
+            <div className={styles.scrollFaderTop}></div>
+            <div className={styles.scrollFaderBottom}></div>
+          </div>
         </main>
       </div>
     </div>

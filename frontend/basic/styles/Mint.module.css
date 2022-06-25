@@ -326,3 +326,64 @@
 
   text-align: center;
 }
+
+@keyframes scroll {
+  0% {
+    top: 51%;
+  }
+  100% {
+    top: -130%;
+  }
+}
+
+.scrollContainer {
+  color: white;
+  width: 100%;
+  height: auto;
+  min-height: 30vh;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.scroll {
+  position: absolute;
+  width: 100%;
+  top: 100%;
+  left: -100%;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  transform: translate(100%, 0%);
+  animation-name: scroll;
+  animation-duration: 30s;
+  animation-delay: 2s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.scroll > div {
+  margin-top: 5px;
+}
+
+.scrollFaderTop {
+  width: 100%;
+  background-image: linear-gradient(to bottom, #141e30, rgb(0 0 0 / 0%));
+  height: 100px;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+}
+
+.scrollFaderBottom {
+  width: 100%;
+  background-image: linear-gradient(to top, #141e30, rgb(0 0 0 / 0%));
+  height: 100px;
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
+}
