@@ -1,8 +1,8 @@
 import { useAccount, useNetwork, useDisconnect } from "wagmi";
+import styles from "@styles/ConnectWallet.module.css";
 import WalletModal from "@components/web3/WalletModal";
 import {
   Button,
-  Link,
   Menu,
   MenuButton,
   MenuItem,
@@ -13,12 +13,7 @@ import { abridgeAddress } from "@utils/abridgeAddress";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { useEffect } from "react";
 
-type ConnectWalletProps = {
-  isMobile?: boolean;
-  size?: string;
-};
-
-const ConnectWallet = ({ isMobile, size }: ConnectWalletProps) => {
+const ConnectWallet = () => {
   const { data } = useAccount();
   const { activeChain, switchNetwork } = useNetwork();
   const {
@@ -39,16 +34,9 @@ const ConnectWallet = ({ isMobile, size }: ConnectWalletProps) => {
   return (
     <>
       {!data ? (
-        <Button
-          style={{
-            color: "#4b4f56",
-            borderRadius: "0",
-          }}
-          onClick={connectOnOpen}
-          size={size}
-        >
-          Connect Wallet
-        </Button>
+        <a href="#" onClick={connectOnOpen} className={styles.btn}>
+          Connect to wallet
+        </a>
       ) : activeChain?.id === targetChain ? (
         <Menu>
           {({ isOpen }) => (
@@ -73,16 +61,6 @@ const ConnectWallet = ({ isMobile, size }: ConnectWalletProps) => {
                   width: "100%",
                 }}
               >
-                <MenuItem>
-                  <Link
-                    href="/mypage"
-                    style={{
-                      textDecoration: "none",
-                    }}
-                  >
-                    View My Collection
-                  </Link>
-                </MenuItem>
                 <MenuItem
                   onClick={() => {
                     disconnect();
