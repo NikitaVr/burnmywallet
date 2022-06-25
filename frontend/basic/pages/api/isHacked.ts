@@ -2,14 +2,14 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
 
-type Data = {
+export type IsHackedResponse = {
   msg?: string;
   hacked?: boolean;
 };
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse<IsHackedResponse>
 ) {
   /** validate req type **/
   if (req.method !== "GET") {
