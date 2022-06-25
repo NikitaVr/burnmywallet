@@ -35,11 +35,8 @@ describe("Basic Burn My Wallet Tests", function () {
   it("should not allow user to send BURN tokens", async function () {
     burn.mint();
     expect(await burn.balanceOf(owner.address)).to.equal(1);
-    console.log(owner.address)
-    console.log(addr1)
-
     await expect(
-      burn["safeTransferFrom(address,address,uint256)"](owner.address, addr1.address, 1)
+      burn["safeTransferFrom(address,address,uint256)"](owner.address, owner.address, 0)
     ).to.be.revertedWith("Err: token is SOUL BOUND");
   });
 });
