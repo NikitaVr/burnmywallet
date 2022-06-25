@@ -40,9 +40,12 @@ const NavBar = () => {
           <Link href="/" passHref>
             <button className={styles.button}>Home</button>
           </Link>
-          <Link href="/viewer" passHref>
-            <button className={styles.button}>Explore Collection</button>
+          <Link href="/search" passHref>
+            <button className={styles.button}>Search</button>
           </Link>
+          {/* <Link href="/viewer" passHref>
+            <button className={styles.button}>Explore Collection</button>
+          </Link> */}
         </div>
         <div className={styles.rightPartition}>
           <ConnectWallet size="md" />

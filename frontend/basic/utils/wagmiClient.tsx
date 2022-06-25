@@ -9,7 +9,8 @@ const clientOptions = {
     new CoinbaseWalletConnector({
       options: {
         appName: "NFT Minting Starter Kit",
-        jsonRpcUrl: alchemyRpcUrls.rinkeby,
+        // jsonRpcUrl: alchemyRpcUrls.rinkeby,
+        jsonRpcUrl: "http://localhost:8545",
       },
     }),
     new MetaMaskConnector(),

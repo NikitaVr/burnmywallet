@@ -31,8 +31,11 @@ const ConnectWallet = ({ isMobile, size }: ConnectWalletProps) => {
 
   const { disconnect } = useDisconnect();
 
+  const targetChain = parseInt(process.env.NEXT_PUBLIC_TARGET_CHAIN!); // 31337; //4
+
   useEffect(() => {
-    if (activeChain?.id !== 4 && switchNetwork) switchNetwork(4);
+    if (activeChain?.id !== targetChain && switchNetwork)
+      switchNetwork(targetChain);
   }, [activeChain]);
 
   return (
@@ -50,7 +53,7 @@ const ConnectWallet = ({ isMobile, size }: ConnectWalletProps) => {
             >
               Connect Wallet
             </Button>
-          ) : activeChain?.id === 4 ? (
+          ) : activeChain?.id === targetChain ? (
             <Menu>
               {({ isOpen }) => (
                 <>
@@ -101,7 +104,7 @@ const ConnectWallet = ({ isMobile, size }: ConnectWalletProps) => {
                 color: "#4b4f56",
                 borderRadius: "0",
               }}
-              onClick={() => switchNetwork && switchNetwork(4)}
+              onClick={() => switchNetwork && switchNetwork(targetChain)}
             >
               Switch to Rinkeby
             </Button>

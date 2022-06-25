@@ -2,31 +2,32 @@ const hre = require("hardhat");
 const fs = require("fs");
 
 async function main() {
-  const MyNFT = await hre.ethers.getContractFactory("MyNFT");
+  const BurnMyWallet = await hre.ethers.getContractFactory("BurnMyWallet");
 
-  const ROYALTY_RECEIVER_ADDR = process.env.ROYALTY_RECEIVER_ADDR;
+  // const ROYALTY_RECEIVER_ADDR = process.env.ROYALTY_RECEIVER_ADDR;
 
-  if (!ROYALTY_RECEIVER_ADDR) {
-    console.log("ROYALTY_RECEIVER_ADDR is required. Please update your .env");
-    return;
-  }
+  // if (!ROYALTY_RECEIVER_ADDR) {
+  //   console.log("ROYALTY_RECEIVER_ADDR is required. Please update your .env");
+  //   return;
+  // }
 
-  const deployedContract = await MyNFT.deploy(ROYALTY_RECEIVER_ADDR);
+  // const deployedContract = await BurnMyWallet.deploy(ROYALTY_RECEIVER_ADDR);
+  const deployedContract = await BurnMyWallet.deploy();
 
   await deployedContract.deployed();
 
-  console.log("MyNFT deployed to:", deployedContract.address);
+  console.log("BurnMyWallet deployed to:", deployedContract.address);
 
   fs.copyFile(
-    "artifacts/contracts/nft.sol/MyNFT.json",
-    "../frontend/basic/data/MyNFT.json",
+    "artifacts/contracts/nft.sol/BurnMyWallet.json",
+    "../frontend/basic/data/BurnMyWallet.json",
     (err) => {
       if (err) {
         console.log("Error Found:", err);
       } else {
         console.log(
           "\nCopied ABI file:",
-          fs.readFileSync("../frontend/basic/data/MyNFT.json", "utf8")
+          fs.readFileSync("../frontend/basic/data/BurnMyWallet.json", "utf8")
         );
       }
     }

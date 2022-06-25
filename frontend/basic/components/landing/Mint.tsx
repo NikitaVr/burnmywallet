@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import styles from "@styles/Mint.module.css";
 import { Button, HStack, Link, VStack } from "@chakra-ui/react";
 import { useAccount, useContractWrite, useNetwork } from "wagmi";
-import myNFT from "@data/MyNFT.json";
+import myNFT from "@data/BurnMyWallet.json";
 import { useState } from "react";
 import {
   NumberInput,
@@ -15,6 +15,8 @@ import {
 import web3 from "web3";
 import { abridgeAddress } from "@utils/abridgeAddress";
 import ConnectWallet from "@components/web3/ConnectWallet";
+
+const targetChain = parseInt(process.env.NEXT_PUBLIC_TARGET_CHAIN!); //31337; //4
 
 const PRICE = 0.02;
 const Mint: NextPage = () => {
@@ -40,12 +42,13 @@ const Mint: NextPage = () => {
         : "0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA",
       contractInterface: myNFT.abi,
     },
-    "mintPublicSale",
+    "safeMint",
     {
-      overrides: {
-        value: payable,
-      },
-      args: [numPublicMint],
+      // overrides: {
+      //   value: payable,
+      // },
+      // args: [numPublicMint],
+      args: [],
       onError(error) {
         console.log(error);
       },
@@ -67,7 +70,7 @@ const Mint: NextPage = () => {
     <div className={styles.background}>
       <div className={styles.container}>
         <main className={styles.main}>
-          <h1 className={styles.title}>🎉 Mint Your NFT 🎉</h1>
+          <h1 className={styles.title}>🔥 Burn My Wallet 🔥</h1>
           {hasMinted && publicSaleData ? (
             <VStack>
               <p style={{ color: "white" }}>
@@ -102,7 +105,7 @@ const Mint: NextPage = () => {
             <VStack>
               <ConnectWallet />
             </VStack>
-          ) : activeChain?.id !== 4 ? (
+          ) : activeChain?.id !== targetChain ? (
             <VStack>
               <p style={{ color: "white" }}>You're on the wrong Network!</p>
               <Button
@@ -111,35 +114,16 @@ const Mint: NextPage = () => {
                   borderRadius: "0",
                 }}
                 onClick={() => {
-                  switchNetwork && switchNetwork(4);
+                  switchNetwork && switchNetwork(targetChain);
                 }}
               >
-                Switch to Rinkeby
+                Switch Network
               </Button>
             </VStack>
           ) : (
             <VStack>
               {/* select # of tokens to mint */}
               <HStack>
-                <NumberInput
-                  step={1}
-                  defaultValue={3}
-                  min={1}
-                  max={5}
-                  precision={0}
-                  onChange={handleChange}
-                  inputMode="numeric"
-                  variant="filled"
-                >
-                  <NumberInputField
-                    _focus={{ bg: "white.300" }}
-                    _active={{ bg: "white.300" }}
-                  />
-                  <NumberInputStepper>
-                    <NumberIncrementStepper />
-                    <NumberDecrementStepper />
-                  </NumberInputStepper>
-                </NumberInput>
                 <Button
                   style={{
                     color: "#4b4f56",
@@ -147,7 +131,7 @@ const Mint: NextPage = () => {
                   }}
                   onClick={handlePublicMint}
                 >
-                  Mint NFT
+                  Burn
                   {publicSaleIsLoading && <Spinner marginLeft={2} />}
                 </Button>
               </HStack>

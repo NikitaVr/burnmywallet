@@ -45,7 +45,14 @@ module.exports = {
     },
   },
   networks: {
-    hardhat: {},
+    hardhat: {
+      accounts: [
+        {
+          privateKey: `0x${PRIVATE_KEY}`,
+          balance: "2873948027343750000000000000000000",
+        },
+      ],
+    },
     rinkeby: {
       url: RINKEBY_API_URL ?? "",
       accounts: [`0x${PRIVATE_KEY}`],
