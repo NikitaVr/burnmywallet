@@ -20,20 +20,28 @@ describe("Basic Burn My Wallet Tests", function () {
   });
 
   it("should allow user to mint BURN token", async function () {
-    burn.mint();
+    await burn.mint();
     expect(await burn.balanceOf(owner.address)).to.equal(1);
   });
 
   it("should not allow user to mint multiple BURN tokens", async function () {
-    burn.mint();
+    await burn.mint();
     expect(await burn.balanceOf(owner.address)).to.equal(1);
+
+    const burnHash = await burn.mint();
+    expect(burnHash.hash).to.not.be.NaN;
+
+    expect(await burn.balanceOf(owner.address)).to.equal(2);
+
+    console.log(await burn.balanceOf(owner.address));
+
     await expect(
       burn.mint()
     ).to.be.revertedWith("Err: only one BURN token may be minted per account");
   });
 
   it("should not allow user to send BURN tokens", async function () {
-    burn.mint();
+    await burn.mint();
     expect(await burn.balanceOf(owner.address)).to.equal(1);
     await expect(
       burn["safeTransferFrom(address,address,uint256)"](owner.address, owner.address, 0)
