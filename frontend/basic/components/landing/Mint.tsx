@@ -4,17 +4,11 @@ import { Button, HStack, Link, VStack } from "@chakra-ui/react";
 import { useAccount, useContractWrite, useNetwork } from "wagmi";
 import myNFT from "@data/BurnMyWallet.json";
 import { useState } from "react";
-import {
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
-  Spinner,
-} from "@chakra-ui/react";
+import { Spinner } from "@chakra-ui/react";
 import web3 from "web3";
 import { abridgeAddress } from "@utils/abridgeAddress";
 import ConnectWallet from "@components/web3/ConnectWallet";
+import { checkIsBurned } from "@utils/isBurned";
 
 const targetChain = parseInt(process.env.NEXT_PUBLIC_TARGET_CHAIN!); //31337; //4
 
@@ -22,12 +16,8 @@ const PRICE = 0.02;
 const Mint: NextPage = () => {
   const { data: account } = useAccount();
   const { activeChain, switchNetwork } = useNetwork();
-
-  const [payable, setPayable] = useState(BigInt(20000000000000000).toString());
-  const [numPublicMint, setNumPublicMint] = useState(3);
   const [hasMinted, setHasMinted] = useState(false);
-  const handleChange = (value: number | string) =>
-    setNumPublicMint(Number(value));
+  const [alreadyBurned, setAlreadyBurned] = useState(false);
 
   const {
     data: publicSaleData,
@@ -60,9 +50,13 @@ const Mint: NextPage = () => {
   );
 
   const handlePublicMint = async () => {
-    const payableInEth = PRICE * numPublicMint;
-    const payableinWei = web3.utils.toWei(payableInEth.toString(10), "ether");
-    setPayable(payableinWei);
+    if (!account) return;
+    const isBurned = await checkIsBurned(account.address!);
+    console.log("isBurned", isBurned);
+    if (isBurned) {
+      setAlreadyBurned(true);
+      return;
+    }
     await publicSaleWrite();
   };
 
@@ -135,6 +129,8 @@ const Mint: NextPage = () => {
                   {publicSaleIsLoading && <Spinner marginLeft={2} />}
                 </Button>
               </HStack>
+
+              {alreadyBurned && <p style={{ color: "red" }}>Already Burned!</p>}
 
               {publicSaleIsError && (
                 <p style={{ color: "red" }}>

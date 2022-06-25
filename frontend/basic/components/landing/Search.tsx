@@ -16,7 +16,8 @@ import web3 from "web3";
 import { abridgeAddress } from "@utils/abridgeAddress";
 import ConnectWallet from "@components/web3/ConnectWallet";
 import axios from "axios";
-import { IsHackedResponse } from "pages/api/isHacked";
+import { IsBurnedResponse } from "pages/api/isBurned";
+import { checkIsBurned } from "@utils/isBurned";
 
 const targetChain = parseInt(process.env.NEXT_PUBLIC_TARGET_CHAIN!); //31337; //4
 
@@ -26,14 +27,9 @@ const Search: NextPage = () => {
   const [hacked, setHacked] = useState<boolean | undefined>(undefined);
   const handleSearch = async () => {
     console.log("handleSearch");
-    const result = await axios.get(
-      `/api/isHacked?address=${value}&chain=rinkeby`
-    );
-    console.log("handleSearch after api call", result.data);
+    const isBurned = await checkIsBurned(value);
 
-    const data = result.data as IsHackedResponse;
-
-    setHacked(data.hacked);
+    setHacked(isBurned);
   };
 
   return (
