@@ -13,8 +13,13 @@
   align-items: center;
   justify-content: space-between;
 
-  background-color: black;
+  background-color: #141e30;
   background-size: cover;
+}
+
+.home {
+  font-size: 28px;
+  margin-right: 15px;
 }
 
 .navbar p {
@@ -29,8 +34,6 @@
 
 .leftPartition {
   display: flex;
-  justify-content: space-between;
-  min-width: 200px;
 }
 
 .rightPartition {
@@ -58,26 +61,4 @@
 }
 .mobilePartition {
   display: none;
-}
-
-@media (max-width: 1200px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: end;
-  }
-
-  .rightPartition,
-  .leftPartition {
-    display: none;
-  }
-
-  .mobilePartition {
-    display: block;
-    float: right;
-  }
-
-  .navbar .title {
-    display: none;
-  }
 }

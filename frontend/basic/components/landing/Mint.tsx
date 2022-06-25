@@ -61,6 +61,37 @@ const Mint: NextPage = () => {
 
   return (
     <div className={styles.background}>
+      <div className={styles.content}>
+        <div className={styles.fire}>
+          <div className={styles.bottom}></div>
+          <figure></figure>
+          <figure></figure>
+          <figure></figure>
+          <figure></figure>
+          <figure></figure>
+          <figure></figure>
+          <figure></figure>
+          <figure></figure>
+          <figure></figure>
+          <figure></figure>
+          <figure></figure>
+          <figure></figure>
+          <figure></figure>
+          <figure></figure>
+          <figure></figure>
+        </div>
+        <div className={styles.reverse}>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+
       <div className={styles.container}>
         <main className={styles.main}>
           <h1 className={styles.title}>🔥 Burn My Wallet 🔥</h1>

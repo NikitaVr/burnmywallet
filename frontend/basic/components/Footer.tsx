@@ -3,7 +3,7 @@ import styles from "@styles/Footer.module.css";
 const Footer = () => {
   return (
     <footer className={`${styles.footer}`}>
-      Made with ❤️ at Coinbase Wallet
+      Made with ❤️ 2022 | ETHNewYork
     </footer>
   );
 };
