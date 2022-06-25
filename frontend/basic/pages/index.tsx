@@ -6,11 +6,8 @@ const Home: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>NFT Minting Starter Kit</title>
-        <meta
-          name="description"
-          content="Starter kit for developers who want to build an NFT minting site"
-        />
+        <title>🔥 Burn My Wallet | Mark your hacked wallets</title>
+        <meta name="description" content="Mark your hacked wallets" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <SplashBanner />
