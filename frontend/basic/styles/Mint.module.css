@@ -32,6 +32,12 @@
   text-transform: uppercase;
   border-radius: 10px;
   font-weight: bold;
+  transition: all 200ms ease-out;
+}
+
+.btn:hover {
+  background-color: #141e30;
+  color: white;
 }
 
 .btn:disabled {
@@ -42,6 +48,34 @@
 .disconnectBtn {
   font-weight: bold;
   text-decoration: underline;
+}
+
+@keyframes bounceOutDown {
+  20% {
+    transform: translate3d(0, 10px, 0) scaleY(0.985);
+  }
+
+  40%,
+  45% {
+    opacity: 1;
+    transform: translate3d(0, -20px, 0) scaleY(0.9);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(0, 2000px, 0) scaleY(3);
+  }
+}
+
+.bounceOutDown {
+  animation-duration: 2s;
+  animation-fill-mode: both;
+  animation-name: bounceOutDown;
+  width: 80px;
+}
+
+.walletIcon {
+  width: 80px;
 }
 
 .background {

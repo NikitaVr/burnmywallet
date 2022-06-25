@@ -1,11 +1,10 @@
 import { NextPage } from "next";
 import styles from "@styles/Mint.module.css";
-import { Button, HStack, Link, VStack } from "@chakra-ui/react";
+import { Image, Link, VStack } from "@chakra-ui/react";
 import { useAccount, useContractWrite, useDisconnect, useNetwork } from "wagmi";
 import myNFT from "@data/BurnMyWallet.json";
 import { useState } from "react";
 import { Spinner } from "@chakra-ui/react";
-import web3 from "web3";
 import { abridgeAddress } from "@utils/abridgeAddress";
 import ConnectWallet from "@components/web3/ConnectWallet";
 import { checkIsBurned } from "@utils/isBurned";
@@ -17,6 +16,7 @@ const Mint: NextPage = () => {
   const { activeChain, switchNetwork } = useNetwork();
   const [hasMinted, setHasMinted] = useState(false);
   const [alreadyBurned, setAlreadyBurned] = useState(false);
+  const [burn, setBurn] = useState(false);
 
   const { disconnect } = useDisconnect();
 
@@ -52,6 +52,7 @@ const Mint: NextPage = () => {
     if (!account) return;
     const isBurned = await checkIsBurned(account.address!);
     console.log("isBurned", isBurned);
+    setBurn(true);
     if (isBurned) {
       setAlreadyBurned(true);
       return;
@@ -151,7 +152,11 @@ const Mint: NextPage = () => {
                   Burn {abridgeAddress(account?.address)}
                   {publicSaleIsLoading && <Spinner marginLeft={2} />}
                 </button>
-
+                <div
+                  className={burn ? styles.bounceOutDown : styles.walletIcon}
+                >
+                  <Image src="assets/eth-wallet.png" alt="wallet icon" />
+                </div>
                 {alreadyBurned && (
                   <p style={{ color: "white", marginTop: 30 }}>
                     Already burned wallet {abridgeAddress(account?.address)}.
