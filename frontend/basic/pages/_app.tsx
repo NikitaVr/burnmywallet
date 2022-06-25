@@ -41,7 +41,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       <WagmiProvider client={WagmiClient}>
         <NavBar />
         <Component {...pageProps} />
-        <Footer />
       </WagmiProvider>
     </ChakraProvider>
   );
