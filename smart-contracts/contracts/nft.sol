@@ -22,7 +22,7 @@ contract BurnMyWallet is ERC721, Ownable {
 
     }
 
-    function safeMint() public onlyOwner {
+    function safeMint() public {
 
         uint256 tokenId = _tokenIdCounter.current();
 
