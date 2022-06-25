@@ -79,39 +79,6 @@ const Search: NextPage = () => {
                   {wal.owner_of} {getRandomText()}
                 </div>
               ))}
-              <div>
-                0xE556B9bfEFDd5B190c67b521ED0A7d19Ab89a311 {getRandomText()}
-              </div>
-              <div>
-                0xc0ffee254729296a45a3885639AC7E10F9d54979 {getRandomText()}
-              </div>
-              <div>
-                0x999999cf1046e68e36E1aA2E0E07105eDDD1f08E {getRandomText()}
-              </div>
-              <div>
-                0xE556B9bfEFDd5B190c67b521ED0A7d19Ab89a311 {getRandomText()}
-              </div>
-              <div>
-                0xc0ffee254729296a45a3885639AC7E10F9d54979 {getRandomText()}
-              </div>
-              <div>
-                0x999999cf1046e68e36E1aA2E0E07105eDDD1f08E {getRandomText()}
-              </div>
-              <div>
-                0xE556B9bfEFDd5B190c67b521ED0A7d19Ab89a311 {getRandomText()}
-              </div>
-              <div>
-                0x999999cf1046e68e36E1aA2E0E07105eDDD1f08E {getRandomText()}
-              </div>
-              <div>
-                0xc0ffee254729296a45a3885639AC7E10F9d54979 {getRandomText()}
-              </div>
-              <div>
-                0xE556B9bfEFDd5B190c67b521ED0A7d19Ab89a311 {getRandomText()}
-              </div>
-              <div>
-                0x999999cf1046e68e36E1aA2E0E07105eDDD1f08E {getRandomText()}
-              </div>
             </div>
             <div className={styles.scrollFaderTop}></div>
             <div className={styles.scrollFaderBottom}></div>
