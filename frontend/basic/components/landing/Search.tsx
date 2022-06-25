@@ -74,6 +74,11 @@ const Search: NextPage = () => {
           </VStack>
           <div className={styles.scrollContainer}>
             <div className={styles.scroll}>
+              {burnedWallets.map((wal: any) => (
+                <div>
+                  {wal.owner_of} {getRandomText()}
+                </div>
+              ))}
               <div>
                 0xE556B9bfEFDd5B190c67b521ED0A7d19Ab89a311 {getRandomText()}
               </div>
