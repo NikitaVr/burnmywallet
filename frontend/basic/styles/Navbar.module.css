@@ -22,6 +22,26 @@
   margin-right: 15px;
 }
 
+.right {
+  font-size: 12px;
+}
+
+.modalBody {
+  margin-bottom: 15px;
+}
+
+.modalBody ul {
+  margin-left: 15px;
+}
+
+.modalBody li {
+  padding-left: 10px;
+}
+
+.modalBody li::marker {
+  content: "✨";
+}
+
 .navbar p {
   font-style: normal;
   font-weight: 400;

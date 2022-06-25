@@ -1,10 +1,22 @@
-import { Tooltip } from "@chakra-ui/react";
+import {
+  Tooltip,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+  Button,
+} from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "../styles/Navbar.module.css";
 
 const NavBar = () => {
   const router = useRouter();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -40,9 +52,82 @@ const NavBar = () => {
             </form>
           </Tooltip>
         </div>
+        <div>
+          <Tooltip label="How can you keep yourself safe?">
+            <div style={{ display: "flex" }}>
+              <button className={styles.home} onClick={onOpen}>
+                🧑‍🚒 <div className={styles.right}>Safety first</div>
+              </button>
+            </div>
+          </Tooltip>
+        </div>
       </div>
+      <AboutModal isOpen={isOpen} onClose={onClose} />
     </div>
   );
 };
 
+function AboutModal({
+  isOpen,
+  onClose,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+}) {
+  return (
+    <>
+      <Modal isOpen={isOpen} onClose={onClose} size="3xl">
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader style={{ textAlign: "center" }}>
+            💁🏽‍♂️ So You've Been Hacked...
+          </ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <div style={{ padding: "0 30px" }}>
+              <p className={styles.modalBody}>
+                🪦 Sorry my friend, but it's gone.
+              </p>
+              <p className={styles.modalBody}>
+                🔑 If you lost your seedphrase, you've lost your wallet and
+                there's nothing you can do to make it safe again.
+              </p>
+              <p className={styles.modalBody}>
+                🔑 Create a new wallet and new seed phrase. Transfer anything
+                you have left into the new wallet.
+              </p>
+              <p className={styles.modalBody}>
+                🧊 For the safest web3 experience: Get a cold wallet!
+              </p>
+
+              <p className={styles.modalBody}>
+                <strong>Some tips for NFTs:</strong>
+                <ul>
+                  <li>
+                    Keep 1 burner wallet for minting; never keep more than 0.2
+                    eth or any NFTs you care about
+                  </li>
+                  <li>
+                    Keep 1 trading wallet for mid-range NFTs that you might
+                    trade
+                  </li>
+                  <li>
+                    Keep 1 cold wallet for your diamond handed NFTs; NEVER
+                    connect to internet <em>especially</em> public wifi
+                  </li>
+                </ul>
+              </p>
+            </div>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="ghost" onClick={onClose}>
+              Close
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
+  );
+}
 export default NavBar;
