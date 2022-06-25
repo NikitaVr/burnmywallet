@@ -158,7 +158,7 @@ const Mint: NextPage = () => {
                   <Image src="assets/eth-wallet.png" alt="wallet icon" />
                 </div>
                 {alreadyBurned && (
-                  <p style={{ color: "white", marginTop: 30 }}>
+                  <p style={{ color: "white", marginTop: 30, zIndex: 2 }}>
                     Already burned wallet {abridgeAddress(account?.address)}.
                     <br />
                     <a
