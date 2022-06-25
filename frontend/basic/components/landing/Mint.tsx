@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import styles from "@styles/Mint.module.css";
 import { Button, HStack, Link, VStack } from "@chakra-ui/react";
-import { useAccount, useContractWrite, useNetwork } from "wagmi";
+import { useAccount, useContractWrite, useDisconnect, useNetwork } from "wagmi";
 import myNFT from "@data/BurnMyWallet.json";
 import { useState } from "react";
 import { Spinner } from "@chakra-ui/react";
@@ -18,10 +18,10 @@ const Mint: NextPage = () => {
   const [hasMinted, setHasMinted] = useState(false);
   const [alreadyBurned, setAlreadyBurned] = useState(false);
 
+  const { disconnect } = useDisconnect();
+
   const {
     data: publicSaleData,
-    error: publicSaleError,
-    isError: publicSaleIsError,
     isLoading: publicSaleIsLoading,
     write: publicSaleWrite,
   } = useContractWrite(
@@ -94,95 +94,78 @@ const Mint: NextPage = () => {
 
       <div className={styles.container}>
         <main className={styles.main}>
-          <h1 className={styles.title}>🔥 Burn My Wallet 🔥</h1>
-          {hasMinted && publicSaleData ? (
-            <VStack>
-              <p style={{ color: "white" }}>
-                Your transaction was sent! Click here to view your transaction:
-              </p>
-              <Link
-                href={`${
-                  process.env.NEXT_PUBLIC_BLOCK_EXPLORER_URL ||
-                  "https://rinkeby.etherscan.io"
-                }/tx/${publicSaleData.hash}`}
-                target="_blank"
-                rel="noreferrer"
-                style={{
-                  color: "white",
-                  borderRadius: "0",
-                }}
-              >
-                Etherscan: {abridgeAddress(publicSaleData.hash)}
-              </Link>
-              <Link href="/mypage">
-                <Button
-                  style={{
-                    color: "#4b4f56",
-                    borderRadius: "0",
-                  }}
-                >
-                  View My Collection
-                </Button>
-              </Link>
-            </VStack>
-          ) : !account?.address ? (
-            <VStack>
-              <ConnectWallet />
-            </VStack>
-          ) : activeChain?.id !== targetChain ? (
-            <VStack>
-              <p style={{ color: "white" }}>You're on the wrong Network!</p>
-              <Button
-                style={{
-                  color: "#4b4f56",
-                  borderRadius: "0",
-                }}
-                onClick={() => {
-                  switchNetwork && switchNetwork(targetChain);
-                }}
-              >
-                Switch Network
-              </Button>
-            </VStack>
-          ) : (
-            <VStack>
-              {/* select # of tokens to mint */}
-              <HStack>
-                <Button
-                  style={{
-                    color: "#4b4f56",
-                    borderRadius: "0",
-                  }}
-                  onClick={handlePublicMint}
-                >
-                  Burn
-                  {publicSaleIsLoading && <Spinner marginLeft={2} />}
-                </Button>
-              </HStack>
-
-              {alreadyBurned && <p style={{ color: "red" }}>Already Burned!</p>}
-
-              {publicSaleIsError && (
-                <p style={{ color: "red" }}>
-                  Error:{" "}
-                  {publicSaleError?.message.includes("Max tokens to mint") &&
-                    "Minted max tokens"}
-                  {/* this happens sometimes when there is a race condition on the payable state */}
-                  {publicSaleError?.message.includes("Incorrect ETH") &&
-                    "Please try again."}
-                  {publicSaleError?.message.includes("not open") &&
-                    "Public sale is currently closed"}
-                  {publicSaleError?.message.includes("insufficient funds") &&
-                    "Insufficient funds"}
-                  {publicSaleError?.message.includes(
-                    "Insufficient tokens remaining"
-                  ) && "The collection has fully minted"}
-                  {publicSaleError?.message.includes("User rejected request") &&
-                    "User rejected request"}
+          <VStack>
+            <h3 className={styles.text}>
+              Connect to your hacked wallet
+              <br />
+              &amp; set it on 🔥 fire 🔥
+            </h3>
+            {hasMinted && publicSaleData ? (
+              <VStack>
+                <p style={{ color: "white" }}>
+                  Your transaction was sent! Click here to view your
+                  transaction:
                 </p>
-              )}
-            </VStack>
-          )}
+                <Link
+                  href={`${
+                    process.env.NEXT_PUBLIC_BLOCK_EXPLORER_URL ||
+                    "https://rinkeby.etherscan.io"
+                  }/tx/${publicSaleData.hash}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{
+                    color: "white",
+                    borderRadius: "0",
+                  }}
+                >
+                  Etherscan: {abridgeAddress(publicSaleData.hash)}
+                </Link>
+              </VStack>
+            ) : !account?.address ? (
+              <VStack>
+                <ConnectWallet />
+              </VStack>
+            ) : activeChain?.id !== targetChain ? (
+              <VStack>
+                <p style={{ color: "white" }}>You're on the wrong Network!</p>
+                <a
+                  href="#"
+                  className={styles.btn}
+                  onClick={() => {
+                    switchNetwork && switchNetwork(targetChain);
+                  }}
+                >
+                  Switch Network
+                </a>
+              </VStack>
+            ) : (
+              <VStack>
+                <button
+                  className={styles.btn}
+                  onClick={handlePublicMint}
+                  disabled={alreadyBurned}
+                >
+                  Burn {abridgeAddress(account?.address)}
+                  {publicSaleIsLoading && <Spinner marginLeft={2} />}
+                </button>
+
+                {alreadyBurned && (
+                  <p style={{ color: "white", marginTop: 30 }}>
+                    Already burned wallet {abridgeAddress(account?.address)}.
+                    <br />
+                    <a
+                      href="#"
+                      className={styles.disconnectBtn}
+                      onClick={() => disconnect()}
+                    >
+                      Disconnect
+                    </a>{" "}
+                    to burn another wallet.
+                  </p>
+                )}
+              </VStack>
+            )}
+          </VStack>
         </main>
       </div>
     </div>
