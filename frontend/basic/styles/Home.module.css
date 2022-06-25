@@ -36,7 +36,7 @@
 .blueTitle,
 .splashTitle,
 .title {
-  font-family: "Inter";
+  font-family: "Roboto";
   max-width: 1200px;
   margin: 0;
   line-height: 1.15;
@@ -59,7 +59,7 @@
 }
 
 .description {
-  font-family: "Inter";
+  font-family: "Roboto";
   margin: 2rem 0;
   line-height: 1.5;
   font-size: 1.5rem;

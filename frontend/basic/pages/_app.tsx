@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     styles: {
       global: (props: any) => ({
         body: {
-          fontFamily: "Inter",
+          fontFamily: "Roboto",
           color: mode("gray.800", "whiteAlpha.900")(props),
           bg: mode("white", "gray.800")(props),
           lineHeight: "base",
