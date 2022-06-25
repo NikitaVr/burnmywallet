@@ -16,13 +16,21 @@ const textList = [
 
 const Search: NextPage = () => {
   const [hacked, setHacked] = useState<boolean | undefined>(undefined);
+  const [search, setSearch] = useState("");
+  const [error, setError] = useState(false);
   const burnedWallets = useAllBurnedWallets();
   console.log("burnedWallets", burnedWallets);
+
   const handleSearch = async (val: string) => {
     console.log("handleSearch");
-    const isBurned = await checkIsBurned(val);
-
-    setHacked(isBurned);
+    try {
+      const isBurned = await checkIsBurned(val);
+      setHacked(isBurned);
+      setError(false);
+    } catch (err) {
+      setError(true);
+      setHacked(undefined);
+    }
   };
 
   const getRandomText = () => {
@@ -30,12 +38,11 @@ const Search: NextPage = () => {
     return `was ${textList[num]}`;
   };
 
-  const { data: account } = useAccount();
-
   const { query } = useRouter();
 
   useEffect(() => {
     if (query.address) {
+      setSearch(query.address as string);
       handleSearch(query.address as string);
     }
   }, [query]);
@@ -47,28 +54,34 @@ const Search: NextPage = () => {
           <h1 className={styles.title}>🔥 Is your wallet burned? 🔥</h1>
           <VStack>
             <p style={{ color: "white", marginBottom: "20px" }}>
-              {account?.address}{" "}
-              {hacked === true && (
-                <span style={{ color: "red" }}>is burned!</span>
-              )}
-              {hacked === false && (
-                <span style={{ color: "green" }}>is not burned!</span>
-              )}{" "}
-              <br />
-              <br />
-              {account?.address && (
+              {!error ? (
                 <>
-                  Check address on etherscan:
+                  {search}{" "}
+                  {search && hacked && (
+                    <span style={{ color: "red" }}>is burned!</span>
+                  )}
+                  {search && hacked === false && (
+                    <span style={{ color: "green" }}>is not burned!</span>
+                  )}
                   <br />
-                  <a
-                    className={styles.link}
-                    target="_blank"
-                    rel="noopener noreferrer nofollow"
-                    href={`https://etherscan.io/address/${account.address}`}
-                  >
-                    etherscan.io/address/{account.address}
-                  </a>
+                  <br />
+                  {search && hacked && (
+                    <>
+                      Check address on etherscan:
+                      <br />
+                      <a
+                        className={styles.link}
+                        target="_blank"
+                        rel="noopener noreferrer nofollow"
+                        href={`https://etherscan.io/address/${search}`}
+                      >
+                        etherscan.io/address/{search}
+                      </a>
+                    </>
+                  )}
                 </>
+              ) : (
+                <span style={{ color: "red" }}>Error checking address</span>
               )}
             </p>
           </VStack>

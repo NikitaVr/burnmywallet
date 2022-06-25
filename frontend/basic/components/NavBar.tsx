@@ -18,9 +18,11 @@ const NavBar = () => {
       <div className={styles.navbar}>
         <div className={styles.leftPartition}>
           <Tooltip label="Burn your hacked wallet">
-            <Link href="/" passHref>
-              <button className={styles.home}>🔥</button>
-            </Link>
+            <div style={{ display: "flex" }}>
+              <Link href="/" passHref>
+                <button className={styles.home}>🔥</button>
+              </Link>
+            </div>
           </Tooltip>
           <Tooltip label="Search if a wallet is marked as compromised">
             <form onSubmit={handleSubmit} className={styles.searchBar}>
