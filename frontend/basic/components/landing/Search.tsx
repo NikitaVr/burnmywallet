@@ -5,9 +5,12 @@ import { useEffect, useState } from "react";
 import { checkIsBurned } from "@utils/isBurned";
 import { useRouter } from "next/router";
 import { useAccount } from "wagmi";
+import useAllBurnedWallets from "hooks/useAllBurnedWallets";
 
 const Search: NextPage = () => {
   const [hacked, setHacked] = useState<boolean | undefined>(undefined);
+  const burnedWallets = useAllBurnedWallets();
+  console.log("burnedWallets", burnedWallets);
   const handleSearch = async (val: string) => {
     console.log("handleSearch");
     const isBurned = await checkIsBurned(val);
