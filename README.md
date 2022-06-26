@@ -18,7 +18,7 @@ The code for the Subgraph is available in a [Public Repository](https://github.c
 
 ## XMTP Integration
 
-We have modified the sample XMTP Client to include the ability to see if a person you are chatting with has been hacked, to prevent impersonation. [You can check it out here](https://github.com/NikitaVr/example-chat-react-burn-my-wallet)
+We have modified the sample XMTP Client to include the ability to see if a person you are chatting with has been hacked, to prevent impersonation. You can [try the demo with Rinkeby here](https://xmtp-example-chat-with-burn-my-wallet.vercel.app/) and the [source code here](https://github.com/NikitaVr/example-chat-react-burn-my-wallet).
 
 ### License
 
