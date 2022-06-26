@@ -28,6 +28,7 @@
 
 .modalBody {
   margin-bottom: 15px;
+  font-size: 14px;
 }
 
 .modalBody ul {
@@ -70,6 +71,15 @@
   align-items: center;
   text-align: center;
   color: #ffffff;
+}
+
+.disabledBtn {
+  cursor: not-allowed;
+}
+
+.disabledBtn:hover {
+  opacity: 0.4;
+  background-color: #141e30 !important;
 }
 
 .searchBar input,
