@@ -8,6 +8,7 @@ import { WagmiClient } from "@utils/wagmiClient";
 import NavBar from "@components/NavBar";
 import Footer from "@components/Footer";
 import { useEffect, useState } from "react";
+import { ChainProvider } from "contexts/ChainProvider";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [mounted, setMounted] = useState(false);
@@ -39,8 +40,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
       <WagmiProvider client={WagmiClient}>
-        <NavBar />
-        <Component {...pageProps} />
+        <ChainProvider>
+          <NavBar />
+          <Component {...pageProps} />
+        </ChainProvider>
       </WagmiProvider>
     </ChakraProvider>
   );
