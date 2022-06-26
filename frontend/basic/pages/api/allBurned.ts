@@ -11,7 +11,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any[]>
 ) {
-  console.log("all burned");
   /** validate req type **/
   if (req.method !== "GET") {
     res.status(400);
@@ -34,8 +33,6 @@ export default async function handler(
       },
     }
   );
-
-  console.log("response", response.data);
 
   if (!response.data) {
     res.status(500);

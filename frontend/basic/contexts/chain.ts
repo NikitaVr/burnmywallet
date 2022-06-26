@@ -14,7 +14,7 @@ export const chains: Record<string, Chain> = {
   },
   mumbai: {
     name: "mumbai",
-    chainId: 137,
+    chainId: 80001,
     contractAddress: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS_POLYGON_MUMBAI!,
   },
 };

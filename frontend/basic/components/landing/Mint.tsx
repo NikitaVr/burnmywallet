@@ -8,8 +8,9 @@ import { Spinner } from "@chakra-ui/react";
 import { abridgeAddress } from "@utils/abridgeAddress";
 import ConnectWallet from "@components/web3/ConnectWallet";
 import { checkIsBurned } from "@utils/isBurned";
+import useChain from "hooks/useChain";
 
-const targetChain = parseInt(process.env.NEXT_PUBLIC_TARGET_CHAIN!); //31337; //4
+// const targetChain = parseInt(process.env.NEXT_PUBLIC_TARGET_CHAIN!); //31337; //4
 
 const Mint: NextPage = () => {
   const { data: account } = useAccount();
@@ -17,6 +18,7 @@ const Mint: NextPage = () => {
   const [hasMinted, setHasMinted] = useState(false);
   const [alreadyBurned, setAlreadyBurned] = useState(false);
   const [burn, setBurn] = useState(false);
+  const { chain } = useChain();
 
   const { disconnect } = useDisconnect();
 
@@ -26,9 +28,10 @@ const Mint: NextPage = () => {
     write: publicSaleWrite,
   } = useContractWrite(
     {
-      addressOrName: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS
-        ? process.env.NEXT_PUBLIC_CONTRACT_ADDRESS
-        : "0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA",
+      addressOrName: chain.contractAddress,
+      // addressOrName: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS
+      //   ? process.env.NEXT_PUBLIC_CONTRACT_ADDRESS
+      //   : "0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA",
       contractInterface: myNFT.abi,
     },
     "safeMint",
@@ -50,7 +53,7 @@ const Mint: NextPage = () => {
 
   const handlePublicMint = async () => {
     if (!account) return;
-    const isBurned = await checkIsBurned(account.address!);
+    const isBurned = await checkIsBurned(account.address!, chain.name);
     console.log("isBurned", isBurned);
     setBurn(true);
     if (isBurned) {
@@ -129,14 +132,14 @@ const Mint: NextPage = () => {
               <VStack>
                 <ConnectWallet />
               </VStack>
-            ) : activeChain?.id !== targetChain ? (
+            ) : activeChain?.id !== chain.chainId ? (
               <VStack>
                 <p style={{ color: "white" }}>You're on the wrong Network!</p>
                 <a
                   href="#"
                   className={styles.btn}
                   onClick={() => {
-                    switchNetwork && switchNetwork(targetChain);
+                    switchNetwork && switchNetwork(chain.chainId);
                   }}
                 >
                   Switch Network

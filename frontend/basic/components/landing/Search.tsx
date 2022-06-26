@@ -1,11 +1,12 @@
 import { NextPage } from "next";
 import styles from "@styles/Mint.module.css";
 import { VStack } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { checkIsBurned } from "@utils/isBurned";
 import { useRouter } from "next/router";
 import { useAccount } from "wagmi";
 import useAllBurnedWallets from "hooks/useAllBurnedWallets";
+import useChain from "hooks/useChain";
 
 const textList = [
   "just burned 🔥",
@@ -19,12 +20,11 @@ const Search: NextPage = () => {
   const [search, setSearch] = useState("");
   const [error, setError] = useState(false);
   const burnedWallets = useAllBurnedWallets();
-  console.log("burnedWallets", burnedWallets);
+  const { chain } = useChain();
 
   const handleSearch = async (val: string) => {
-    console.log("handleSearch");
     try {
-      const isBurned = await checkIsBurned(val);
+      const isBurned = await checkIsBurned(val, chain.name);
       setHacked(isBurned);
       setError(false);
     } catch (err) {
@@ -45,7 +45,7 @@ const Search: NextPage = () => {
       setSearch(query.address as string);
       handleSearch(query.address as string);
     }
-  }, [query]);
+  }, [query, chain.name]);
 
   return (
     <div className={styles.background}>

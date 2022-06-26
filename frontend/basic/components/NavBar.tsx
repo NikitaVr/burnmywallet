@@ -48,7 +48,6 @@ const NavBar = () => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     const value = e.target.elements.search.value;
-    console.log(value);
     router.push(`search?address=${value}`);
   };
 
