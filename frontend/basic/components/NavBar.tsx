@@ -9,6 +9,8 @@ import {
   ModalCloseButton,
   useDisclosure,
   Button,
+  Select,
+  HStack,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -23,6 +25,12 @@ const NavBar = () => {
     const value = e.target.elements.search.value;
     console.log(value);
     router.push(`search?address=${value}`);
+  };
+
+  const handleNetworkChange = (e: any) => {
+    e.preventDefault();
+    const value = e.target.value;
+    console.log(value);
   };
 
   return (
@@ -52,7 +60,15 @@ const NavBar = () => {
             </form>
           </Tooltip>
         </div>
-        <div>
+        <HStack>
+          <Select onChange={handleNetworkChange}>
+            <option className={styles.searchBtn} value="rinkeby">
+              Rinkeby
+            </option>
+            <option className={styles.searchBtn} value="mumbai">
+              Polygon Mumbai
+            </option>
+          </Select>
           <Tooltip label="How can you keep yourself safe?">
             <div style={{ display: "flex" }}>
               <button className={styles.home} onClick={onOpen}>
@@ -60,7 +76,7 @@ const NavBar = () => {
               </button>
             </div>
           </Tooltip>
-        </div>
+        </HStack>
       </div>
       <AboutModal isOpen={isOpen} onClose={onClose} />
     </div>
