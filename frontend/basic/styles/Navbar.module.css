@@ -75,9 +75,6 @@
 
 .disabledBtn {
   cursor: not-allowed;
-}
-
-.disabledBtn:hover {
   opacity: 0.4;
   background-color: #141e30 !important;
 }

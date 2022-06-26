@@ -160,11 +160,7 @@ const Mint: NextPage = () => {
                 <div
                   className={burn ? styles.bounceOutDown : styles.walletIcon}
                 >
-                  <Tooltip
-                    label={`Drop ${abridgeAddress(
-                      account?.address
-                    )} into the flames`}
-                  >
+                  <Tooltip label="Drop it like it's hot!">
                     <Image src="assets/eth-wallet.png" alt="wallet icon" />
                   </Tooltip>
                 </div>

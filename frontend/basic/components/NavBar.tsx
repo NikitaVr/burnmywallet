@@ -80,66 +80,81 @@ const NavBar = () => {
         </div>
 
         <HStack>
-          <div
-            style={{
-              position: "relative",
-              marginRight: "20px",
-              width: "200px",
-            }}
-          >
-            <Menu colorScheme="facebook">
-              <MenuButton as={Dropdown} rightIcon={<ChevronDownIcon />}>
-                <HStack>
-                  <Image
-                    boxSize="2rem"
-                    borderRadius="full"
-                    src={imagesMap[chain.name]}
-                    mr="12px"
-                  />
-                  <div>{testnetMap[chain.name]}</div>
-                </HStack>
-              </MenuButton>
-              <MenuList bgColor="facebook.900">
-                <MenuItem
-                  onClick={() => switchChain("rinkeby")}
-                  as={Dropdown}
-                  minH="48px"
-                >
-                  <Image
-                    boxSize="2rem"
-                    borderRadius="full"
-                    src={imagesMap.rinkeby}
-                    alt="Ethereum - Rinkeby"
-                    mr="12px"
-                  />
-                  <span>Ethereum</span>
-                </MenuItem>
-                <MenuItem
-                  onClick={() => switchChain("mumbai")}
-                  as={Dropdown}
-                  minH="40px"
-                >
-                  <Image
-                    boxSize="2rem"
-                    borderRadius="full"
-                    src={imagesMap.mumbai}
-                    alt="Polygon - Mumbai"
-                    mr="12px"
-                  />
-                  <span>Polygon</span>
-                </MenuItem>
-                <MenuItem
-                  className={styles.disabledBtn}
-                  disabled
-                  as={Button}
-                  minH="40px"
-                >
-                  <div style={{ marginRight: "12px" }}>🔴</div>
-                  <span>Optimism</span>
-                </MenuItem>
-              </MenuList>
-            </Menu>
-          </div>
+          <Tooltip label="Switch network">
+            <div
+              style={{
+                position: "relative",
+                marginRight: "20px",
+                width: "200px",
+              }}
+            >
+              <Menu colorScheme="facebook">
+                <MenuButton as={Dropdown} rightIcon={<ChevronDownIcon />}>
+                  <HStack>
+                    <Image
+                      boxSize="2rem"
+                      borderRadius="full"
+                      src={imagesMap[chain.name]}
+                      mr="12px"
+                    />
+                    <div>{testnetMap[chain.name]}</div>
+                  </HStack>
+                </MenuButton>
+                <MenuList bgColor="facebook.900">
+                  <MenuItem
+                    onClick={() => switchChain("rinkeby")}
+                    justifyContent="left"
+                    paddingStart={8}
+                    as={Dropdown}
+                    minH="48px"
+                  >
+                    <Image
+                      boxSize="2rem"
+                      borderRadius="full"
+                      src={imagesMap.rinkeby}
+                      justifyContent="left"
+                      alt="Ethereum - Rinkeby"
+                      mr="12px"
+                    />
+                    <Tooltip label="Ethereum - Rinkeby">
+                      <span>Ethereum</span>
+                    </Tooltip>
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => switchChain("mumbai")}
+                    paddingStart={9}
+                    as={Dropdown}
+                    justifyContent="left"
+                    minH="40px"
+                  >
+                    <Image
+                      boxSize="2rem"
+                      borderRadius="full"
+                      src={imagesMap.mumbai}
+                      alt="Polygon - Mumbai"
+                      mr="12px"
+                    />
+                    <Tooltip label="Polygon - Mumbai">
+                      <span>Polygon</span>
+                    </Tooltip>
+                  </MenuItem>
+                  <MenuItem
+                    className={styles.disabledBtn}
+                    disabled
+                    paddingStart={10}
+                    justifyContent="left"
+                    as={Button}
+                    minH="40px"
+                  >
+                    <div style={{ marginRight: "12px" }}>🔴</div>
+                    <Tooltip label="Coming soon ...">
+                      <span>Optimism</span>
+                    </Tooltip>
+                  </MenuItem>
+                </MenuList>
+              </Menu>
+            </div>
+          </Tooltip>
           <Tooltip label="How can you keep yourself safe?">
             <div style={{ display: "flex" }}>
               <button className={styles.home} onClick={onOpen}>
