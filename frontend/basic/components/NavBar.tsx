@@ -64,6 +64,20 @@ const NavBar = () => {
               </Link>
             </div>
           </Tooltip>
+          <Tooltip label="Read our Documentation">
+            <div style={{ display: "flex" }}>
+              <Link href="https://docs.burnmywallet.com">
+                <button className={styles.home}>Docs</button>
+              </Link>
+            </div>
+          </Tooltip>
+          <Tooltip label="Join our community">
+            <div style={{ display: "flex" }}>
+              <Link href="https://discord.gg/yMvQTNPPS9">
+                <button className={styles.home}>Discord</button>
+              </Link>
+            </div>
+          </Tooltip>
           <Tooltip label="Search if a wallet is marked as compromised">
             <form onSubmit={handleSubmit} className={styles.searchBar}>
               <input
