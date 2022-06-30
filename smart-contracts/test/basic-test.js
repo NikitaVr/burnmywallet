@@ -28,13 +28,6 @@ describe("Basic Burn My Wallet Tests", function () {
     await burn.mint();
     expect(await burn.balanceOf(owner.address)).to.equal(1);
 
-    const burnHash = await burn.mint();
-    expect(burnHash.hash).to.not.be.NaN;
-
-    expect(await burn.balanceOf(owner.address)).to.equal(2);
-
-    console.log(await burn.balanceOf(owner.address));
-
     await expect(
       burn.mint()
     ).to.be.revertedWith("Err: only one BURN token may be minted per account");
