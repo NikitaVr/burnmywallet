@@ -51,6 +51,6 @@ contract BurnMyWallet is ERC721, Ownable {
     prevent a user from burning a token
     */
     function _burn(uint256 tokenId) internal override(ERC721) {
-        require(true == false, "Err: cannot burn the BURN token");
+        revert("Err: cannot burn the BURN token");
     }
 }
