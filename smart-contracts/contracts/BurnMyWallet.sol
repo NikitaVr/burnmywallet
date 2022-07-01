@@ -27,7 +27,7 @@ contract BurnMyWallet is ERC721, Ownable {
     */
     function mint() public {
         require(
-            address(this).balance == 0,
+            balanceOf(msg.sender) == 0,
             "Err: only one BURN token may be minted per account"
         );
         uint256 tokenId = _tokenIdCounter.current();
@@ -51,6 +51,6 @@ contract BurnMyWallet is ERC721, Ownable {
     prevent a user from burning a token
     */
     function _burn(uint256 tokenId) internal override(ERC721) {
-        require(true == false, "Err: cannot burn the BURN token");
+        revert("Err: cannot burn the BURN token");
     }
 }
