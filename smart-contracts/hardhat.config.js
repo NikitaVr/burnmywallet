@@ -19,18 +19,18 @@ const {
   ROYALTY_RECEIVER_ADDR,
 } = process.env;
 
-// THIS IS A PUBLICLY KNOWN (HARDHAT) PRIVATE KEY. 
+// THIS IS A PUBLICLY KNOWN (HARDHAT) PRIVATE KEY.
 // DO NOT USE THIS IN PRODUCTION OR SEND ANY FUNDS TO THE ASSOCIATED ADDRESS
-const BACKUP_PRIVATE_KEY = "f2f48ee19680706196e2e339e5da3491186e0c4c5030670656b0e0164837257d";
+const BACKUP_PRIVATE_KEY =
+  "f2f48ee19680706196e2e339e5da3491186e0c4c5030670656b0e0164837257d";
 
 let PRIVATE_KEY;
-if(process.env.PRIVATE_KEY) {
-    PRIVATE_KEY = process.env.PRIVATE_KEY;
+if (process.env.PRIVATE_KEY) {
+  PRIVATE_KEY = process.env.PRIVATE_KEY;
 } else {
-    console.log("Using backup private key");
-    PRIVATE_KEY = BACKUP_PRIVATE_KEY;
+  console.log("Using backup private key");
+  PRIVATE_KEY = BACKUP_PRIVATE_KEY;
 }
-
 
 task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
   const accounts = await hre.ethers.getSigners();
@@ -57,6 +57,14 @@ module.exports = {
     },
   },
   networks: {
+    hardhat: {
+      accounts: [
+        {
+          privateKey: PRIVATE_KEY,
+          balance: "10000000000000000000000",
+        },
+      ],
+    },
     rinkeby: {
       url: RINKEBY_API_URL ?? "",
       accounts: [`0x${PRIVATE_KEY}`],
