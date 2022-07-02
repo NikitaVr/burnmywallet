@@ -57,14 +57,14 @@ module.exports = {
     },
   },
   networks: {
-    hardhat: {
-      accounts: [
-        {
-          privateKey: PRIVATE_KEY,
-          balance: "10000000000000000000000",
-        },
-      ],
-    },
+    // hardhat: {
+    //   accounts: [
+    //     {
+    //       privateKey: PRIVATE_KEY,
+    //       balance: "10000000000000000000000",
+    //     },
+    //   ],
+    // },
     rinkeby: {
       url: RINKEBY_API_URL ?? "",
       accounts: [`0x${PRIVATE_KEY}`],
