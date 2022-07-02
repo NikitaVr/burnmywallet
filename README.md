@@ -10,6 +10,10 @@ Burn baby burn: [burnmywallet.com](https://burnmywallet.com/)
 
 ![preview image](preview.png)
 
+## Documentation
+
+See our docs at [docs.burnmywallet.com](https://docs.burnmywallet.com/)
+
 ## The Graph Protocol
 
 We provide a [Public Graph Protocol Subgraph](https://thegraph.com/hosted-service/subgraph/nikitavr/burn-my-wallet-rinkeby ) to query more data on Burned Wallets for advanced use cases
