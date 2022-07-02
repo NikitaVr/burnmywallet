@@ -14,15 +14,21 @@ Burn baby burn: [burnmywallet.com](https://burnmywallet.com/)
 
 See our docs at [docs.burnmywallet.com](https://docs.burnmywallet.com/)
 
+## Community Discord
+
+Join our [Discord server](https://discord.gg/4JG7fdFNpa) to ask questions, integrate with your app, contribute, or just hang out with crypto security frens.
+
+## XMTP Integration
+
+We have modified the sample XMTP Client to include the ability to see if a person you are chatting with has been hacked, to prevent impersonation. You can [try the demo with Rinkeby here](https://xmtp-example-chat-with-burn-my-wallet.vercel.app/) and the [source code here](https://github.com/NikitaVr/example-chat-react-burn-my-wallet).
+
 ## The Graph Protocol
 
 We provide a [Public Graph Protocol Subgraph](https://thegraph.com/hosted-service/subgraph/nikitavr/burn-my-wallet-rinkeby ) to query more data on Burned Wallets for advanced use cases
 
 The code for the Subgraph is available in a [Public Repository](https://github.com/NikitaVr/burnmywallet-graph)
 
-## XMTP Integration
 
-We have modified the sample XMTP Client to include the ability to see if a person you are chatting with has been hacked, to prevent impersonation. You can [try the demo with Rinkeby here](https://xmtp-example-chat-with-burn-my-wallet.vercel.app/) and the [source code here](https://github.com/NikitaVr/example-chat-react-burn-my-wallet).
 
 ### License
 
