@@ -52,4 +52,29 @@ describe("Basic Burn My Wallet Tests", function () {
             burn.transferFrom(owner.address, addr1.address, 0)
         ).to.be.revertedWith("Err: token is SOUL BOUND");
     });
+
+    it("should allow user to submit signed burn message from different wallet", async function () {
+        const signer = addr1;
+        const to = burn.address;
+        const amount = 0;
+        const message = await burn.burnMessage();
+        const nonce = 123;
+        const hash = await burn.getMessageHash(to, amount, message, nonce);
+        const signature = await signer.signMessage(ethers.utils.arrayify(hash));
+
+        await burn.burnWithMessageSignature(signer.address, nonce, signature);
+
+        expect(await burn.balanceOf(signer.address)).to.equal(1);
+    });
+
+    it("reverts when signature does not match signer", async function () {
+        const signer = addr1;
+        const to = burn.address;
+        const amount = 0;
+        const message = await burn.burnMessage();
+        const nonce = 123;
+        const hash = await burn.getMessageHash(to, amount, message, nonce);
+        const signature = await signer.signMessage(ethers.utils.arrayify(hash));
+        await expect(burn.burnWithMessageSignature(addr2.address, nonce, signature)).to.be.revertedWith("Invalid Signature");
+    });
 });
