@@ -50,6 +50,6 @@ describe("Basic Burn My Wallet Tests", function () {
         expect(await burn.balanceOf(owner.address)).to.equal(1);
         await expect(
             burn.transferFrom(owner.address, addr1.address, 0)
-        ).to.be.revertedWith("Err: token is SOUL BOUND");
+        ).to.be.revertedWith("Err: only one BURN token may be minted per account");
     });
 });
