@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🔥 Burn My Wallet
+    url: https://burnmywallet.com/
+    about: Protect your Dapp with a few lines of code
+  - name: 📝 Documentation
+    url: https://docs.burnmywallet.com/
+    about: Documentation for getting started with Burn My Wallet
+  - name: 🗣 Discord Server
+    url: https://discord.gg/4JG7fdFNpa/
+    about: Join our discord server
