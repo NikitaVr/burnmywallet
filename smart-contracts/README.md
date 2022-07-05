@@ -14,10 +14,16 @@ Before you start, make sure you have the following available:
 2. Set up an Alchemy (Recommended) or Infura account (the free one works!) to retrieve an API endpoint
 3. Set up an etherscan account and obtain the API key (optional)
 4. If deploying on testnet, fill up your test wallet with some test ETH: [Paradigm](https://faucet.paradigm.xyz/), [Alchemy](https://rinkebyfaucet.com/), [Chainlink](https://faucets.chain.link/) faucets (optional)
+5. Install foundry/forge (see [instructions](https://book.getfoundry.sh/getting-started/installation.html))
 
 ## Deploy the NFT Contract
 
-1. Install dependencies
+1. Install foundry/forge dependencies
+   ```
+   forge install
+   ```
+
+1. Install npm dependencies
 
    ```
    yarn install
@@ -71,7 +77,12 @@ Before you start, make sure you have the following available:
 
 ## Testing
 
-Run `yarn test`. Additionally, this repository has been configured with a Github workflow (see [`hardhat-tests.yml`](/.github/workflows/hardhat-tests.yml)) to run the smart contract tests on every pull request.
+We have two sets of tests one based on hardhat and one on foundry:
+
+1. To execute the hardhat tests run `yarn test`.
+1. To execute the foundry/forge tests run `forge test`.
+
+Additionally, this repository has been configured with a Github workflow (see [`hardhat-tests.yml`](/.github/workflows/hardhat-tests.yml)) to run the smart contract tests on every pull request.
 
 ## Scripts
 
